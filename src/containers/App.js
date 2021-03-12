@@ -39,7 +39,8 @@ state={
             {id:256,name:"Tom",age:21}
             ],
     otherState:'Some Other value',
-    showPersons:false
+    showPersons:false,
+    showCockpit:true
     }
     static getDerivedStateFromProps(props,state){
     console.log('[App.js] getDerivedStateFromProps',props)
@@ -140,7 +141,9 @@ state={
     return (
 
       <div className={classes.App}>
-        <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonHandler}/>
+          <button onClick={()=>{this.setState({showCockpit:false})}}>Remove Cockpit</button>
+          {this.state.showCockpit ?<Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonHandler}/>
+          :null}
           {persons}
 
           {/*<UserInput change={this.nameChangedHandler} name={this.state.username}/>
